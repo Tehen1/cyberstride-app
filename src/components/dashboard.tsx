@@ -1,6 +1,6 @@
 "use client";
 
-import { Map, Zap, Dumbbell, Flame, Target } from "lucide-react";
+import { Map, Zap, Dumbbell, Flame } from "lucide-react";
 import Image from "next/image";
 import { CyberCard } from "@/components/ui/cyber-card";
 import { CyberButton } from "@/components/ui/cyber-button";
@@ -32,22 +32,22 @@ export default function Dashboard() {
           Today's Progress
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          <CyberCard variant="inner">
+          <CyberCard variant="inner" className="flex flex-col items-center justify-center p-4">
             <CircularProgress value={75} />
             <p className="mt-2 text-sm font-bold">12.5km</p>
             <p className="text-xs text-muted-foreground">Distance</p>
           </CyberCard>
-          <CyberCard variant="inner">
+          <CyberCard variant="inner" className="flex flex-col items-center justify-center p-4">
             <Dumbbell className="w-10 h-10 mx-auto text-secondary cyber-glow-secondary"/>
             <p className="mt-2 text-2xl font-bold">1:35:20</p>
             <p className="text-xs text-muted-foreground">Duration</p>
           </CyberCard>
-          <CyberCard variant="inner">
+          <CyberCard variant="inner" className="flex flex-col items-center justify-center p-4">
             <Flame className="w-10 h-10 mx-auto text-accent cyber-glow-accent"/>
             <p className="mt-2 text-2xl font-bold">890</p>
             <p className="text-xs text-muted-foreground">Calories</p>
           </CyberCard>
-          <CyberCard variant="inner">
+          <CyberCard variant="inner" className="flex flex-col items-center justify-center p-4">
             <Zap className="w-10 h-10 mx-auto text-primary cyber-glow"/>
             <p className="mt-2 text-2xl font-bold">42.10</p>
             <p className="text-xs text-muted-foreground">Tokens</p>

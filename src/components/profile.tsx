@@ -3,14 +3,14 @@
 import { CyberCard } from "@/components/ui/cyber-card";
 import { CyberButton } from "@/components/ui/cyber-button";
 import { Switch } from "@/components/ui/switch";
-import { User, Bell, Moon, Gps, ChevronRight, UploadCloud, LogOut, Power } from "lucide-react";
+import { User, Bell, Moon, MapPin, ChevronRight, UploadCloud, LogOut, Link, Heart, Smartphone, Footprints } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const services = [
-  { name: "Apple HealthKit", icon: "fab fa-apple", connected: true },
-  { name: "Strava", icon: "fab fa-strava", connected: true },
-  { name: "Google Fit", icon: "fab fa-google", connected: false },
-  { name: "Fitbit", icon: "fas fa-heartbeat", connected: false },
+  { name: "Apple HealthKit", icon: Heart, connected: true },
+  { name: "Strava", icon: Footprints, connected: true },
+  { name: "Google Fit", icon: Heart, connected: false },
+  { name: "Fitbit", icon: Smartphone, connected: false },
 ];
 
 export default function Profile() {
@@ -35,7 +35,7 @@ export default function Profile() {
             <div className="space-y-3">
                 <SettingRow label="Notifications" icon={Bell} defaultChecked={true} />
                 <SettingRow label="Dark Mode" icon={Moon} defaultChecked={true} />
-                <SettingRow label="GPS Auto-start" icon={Gps} defaultChecked={true} />
+                <SettingRow label="GPS Auto-start" icon={MapPin} defaultChecked={true} />
             </div>
         </CyberCard>
         
@@ -45,10 +45,11 @@ export default function Profile() {
                 {services.map(service => (
                     <div key={service.name} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
                         <div className="flex items-center gap-3">
-                            <i className={`${service.icon} w-6 h-6 text-primary text-xl text-center`}></i>
+                            <service.icon className="w-6 h-6 text-primary"/>
                             <span className="font-medium">{service.name}</span>
                         </div>
                         <CyberButton size="sm" variant={service.connected ? "secondary" : "default"}>
+                             <Link className="w-4 h-4 mr-2" />
                             {service.connected ? 'Connected' : 'Connect'}
                         </CyberButton>
                     </div>
@@ -87,16 +88,3 @@ const AccountAction = ({ label, icon: Icon, className }: { label: string; icon: 
         <ChevronRight className="w-5 h-5 text-muted-foreground"/>
     </button>
 )
-
-// Add FontAwesome to head
-import Head from 'next/head';
-const ProfileWithHead = () => (
-    <>
-        <Head>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-        </Head>
-        <Profile />
-    </>
-);
-
-export { ProfileWithHead as Profile };
