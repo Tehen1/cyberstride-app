@@ -2,79 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --background: 231 48% 8%; /* #0a0a23 */
+    --foreground: 192 100% 90%; /* Light cyan for text */
+
+    --card: 231 40% 12%;
+    --card-foreground: 192 100% 90%;
+
+    --popover: 231 48% 8%;
+    --popover-foreground: 192 100% 90%;
+
+    --primary: 192 100% 50%; /* #00d4ff */
+    --primary-foreground: 231 48% 8%;
+
+    --secondary: 282 100% 50%; /* #b300ff */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 231 20% 20%;
+    --muted-foreground: 192 50% 70%;
+
+    --accent: 333 100% 50%; /* #ff006e */
+    --accent-foreground: 0 0% 100%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --border: 192 100% 30%;
+    --input: 192 100% 20%;
+    --ring: 192 100% 50%;
+
+    --radius: 0.8rem;
+
+    --cyber-blue: 192 100% 50%;
+    --cyber-purple: 282 100% 50%;
+    --cyber-pink: 333 100% 50%;
+    --cyber-green: 145 100% 50%;
   }
+
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
+    --background: 231 48% 8%;
+    --foreground: 192 100% 90%;
+
+    --card: 231 40% 12%;
+    --card-foreground: 192 100% 90%;
+
+    --popover: 231 48% 8%;
+    --popover-foreground: 192 100% 90%;
+
+    --primary: 192 100% 50%;
+    --primary-foreground: 231 48% 8%;
+
+    --secondary: 282 100% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 231 20% 20%;
+    --muted-foreground: 192 50% 70%;
+
+    --accent: 333 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --border: 192 100% 30%;
+    --input: 192 100% 20%;
+    --ring: 192 100% 50%;
   }
 }
 
@@ -84,5 +77,108 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    background: radial-gradient(ellipse at center, hsl(231 48% 8%) 0%, #000000 70%);
+    position: relative;
+    overflow-x: hidden;
   }
+
+  body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: 
+          linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 48%, rgba(0, 212, 255, 0.2) 50%, rgba(0, 0, 0, 0) 52%, rgba(0, 0, 0, 0) 100%),
+          linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 48%, rgba(179, 0, 255, 0.2) 50%, rgba(0, 0, 0, 0) 52%, rgba(0, 0, 0, 0) 100%);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: -1;
+      animation: matrix 1s linear infinite;
+  }
+}
+
+@layer utilities {
+  .cyber-glow {
+    text-shadow: 0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary)), 0 0 15px hsl(var(--primary));
+  }
+  
+  .cyber-glow-secondary {
+    text-shadow: 0 0 5px hsl(var(--secondary)), 0 0 10px hsl(var(--secondary));
+  }
+  
+  .cyber-glow-accent {
+    text-shadow: 0 0 5px hsl(var(--accent)), 0 0 10px hsl(var(--accent));
+  }
+
+  .cyber-text-gradient {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+
+  .cyber-border-animated {
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+
+  .cyber-border-animated::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: -1;
+    margin: -2px;
+    border-radius: inherit;
+    background: linear-gradient(45deg, hsl(var(--cyber-blue)), hsl(var(--cyber-purple)), hsl(var(--cyber-pink)));
+    animation: rotate 4s linear infinite;
+  }
+
+  .scan-line::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+          transparent, 
+          hsla(var(--primary) / 0.2), 
+          transparent);
+      animation: scan 4s linear infinite;
+      z-index: 1;
+  }
+}
+
+@keyframes scan {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+@keyframes pulse-line {
+  0%, 100% { opacity: 0.5; box-shadow: 0 0 5px hsl(var(--primary));}
+  50% { opacity: 1; box-shadow: 0 0 15px hsl(var(--primary));}
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes matrix {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
