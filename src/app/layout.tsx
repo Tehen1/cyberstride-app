@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Orbitron } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
-const inter = Inter({ subsets: ['latin'] })
+const orbitron = Orbitron({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Fitness App',
-  description: 'Your personal fitness tracker.',
+  title: 'FIXIE - zkEVM Fitness',
+  description: 'Your personal fitness tracker powered by zkEVM.',
 };
 
 export default function RootLayout({
@@ -16,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="dark">
+      <body className={orbitron.className}>
         {children}
         <Toaster />
       </body>
