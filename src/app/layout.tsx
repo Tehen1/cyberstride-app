@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/toaster"
 const orbitron = Orbitron({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'FIXIE - zkEVM Fitness',
+  title: 'CyberStride - zkEVM Fitness',
   description: 'Your personal fitness tracker powered by zkEVM.',
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   Home,
   Coins,
@@ -32,8 +32,19 @@ const navItems = [
   { id: "profile", label: "Profile", icon: User },
 ];
 
+const videoSources = {
+  home: "https://ipfs.io/ipfs/QmY5CCvnXpzH93gvAzbwHGyiwtXLUMtJ2yn9FqGLW6SnY5",
+  analytics: "https://ipfs.io/ipfs/QmTxhqRF8rQZxcwL1hfoqrrEjLahfymPRtpGXRq4gRK4Xn",
+  defi: "https://ipfs.io/ipfs/QmPbM9iDT3v5o4zDvLntNhySmYpjEsKvgY4YmhskHvRn24",
+  default: "https://ipfs.io/ipfs/QmY6skxApAer2bfMPXvvuEEx3WunScoN8b8hmmez8VCK6q",
+};
+
 export default function Layout() {
   const [activeView, setActiveView] = useState<View>("home");
+
+  const videoSrc = useMemo(() => {
+    return videoSources[activeView] || videoSources.default;
+  }, [activeView]);
 
   const renderView = () => {
     switch (activeView) {
@@ -57,13 +68,14 @@ export default function Layout() {
   return (
     <div className="flex flex-col min-h-screen bg-background relative">
       <video 
+        key={videoSrc}
         autoPlay 
         loop 
         muted 
         playsInline
-        className="fixed top-0 left-0 w-full h-full object-cover -z-10 opacity-20"
+        className="fixed top-0 left-0 w-full h-full object-cover -z-10 opacity-20 transition-opacity duration-1000"
       >
-        <source src="https://ipfs.io/ipfs/QmY6skxApAer2bfMPXvvuEEx3WunScoN8b8hmmez8VCK6q" type="video/mp4" />
+        <source src={videoSrc} type="video/mp4" />
       </video>
       <div className="fixed top-0 left-0 w-full h-full bg-background/80 -z-10" />
 
@@ -85,7 +97,7 @@ function Header() {
         <div className="flex items-center gap-2">
           <Bike className="w-6 h-6 text-primary" />
           <h1 className="text-xl font-bold text-foreground">
-            FIXIE
+            CyberStride
           </h1>
         </div>
         <Button variant="outline">
@@ -122,3 +134,21 @@ function BottomNav({ activeView, setActiveView }: { activeView: View; setActiveV
     </nav>
   );
 }
+
+const CyberstrideHeader = () => {
+    return (
+        <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border/50">
+            <div className="max-w-4xl mx-auto flex items-center justify-between h-16 px-4">
+                <div className="flex items-center gap-2">
+                    <Bike className="w-6 h-6 text-primary" />
+                    <h1 className="text-xl font-bold text-foreground">
+                        CyberStride
+                    </h1>
+                </div>
+                <Button variant="outline">
+                    Connect Wallet
+                </Button>
+            </div>
+        </header>
+    );
+};
