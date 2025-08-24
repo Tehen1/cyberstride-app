@@ -134,21 +134,3 @@ function BottomNav({ activeView, setActiveView }: { activeView: View; setActiveV
     </nav>
   );
 }
-
-const CyberstrideHeader = () => {
-    return (
-        <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border/50">
-            <div className="max-w-4xl mx-auto flex items-center justify-between h-16 px-4">
-                <div className="flex items-center gap-2">
-                    <Bike className="w-6 h-6 text-primary" />
-                    <h1 className="text-xl font-bold text-foreground">
-                        CyberStride
-                    </h1>
-                </div>
-                <Button variant="outline">
-                    Connect Wallet
-                </Button>
-            </div>
-        </header>
-    );
-};
