@@ -43,7 +43,7 @@ export default function Layout() {
   const [activeView, setActiveView] = useState<View>("home");
 
   const videoSrc = useMemo(() => {
-    return videoSources[activeView] || videoSources.default;
+    return videoSources[activeView as keyof typeof videoSources] || videoSources.default;
   }, [activeView]);
 
   const renderView = () => {
