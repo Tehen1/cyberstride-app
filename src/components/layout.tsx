@@ -73,7 +73,7 @@ function Header() {
             CyberStride
           </h1>
         </div>
-        <button className="text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-md border-2 border-accent text-accent transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-[0_0_15px_hsl(var(--accent))]">
+        <button className="text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-md border-2 border-secondary text-secondary transition-all duration-300 hover:bg-secondary hover:text-white hover:shadow-[0_0_15px_hsl(var(--secondary))]">
           Connect
         </button>
       </div>
