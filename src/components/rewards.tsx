@@ -1,8 +1,10 @@
 "use client";
 
-import { CyberCard } from "@/components/ui/cyber-card";
-import { CyberButton } from "@/components/ui/cyber-button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Medal, Lock, Trophy } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { cn } from "@/lib/utils";
 
 const rewards = [
     { title: "First Workout Badge", subtitle: "Complete your first workout", claimed: false },
@@ -20,32 +22,35 @@ const leaderboard = [
 export default function Rewards() {
   return (
     <div className="space-y-6 fade-in">
-        <CyberCard>
-            <h2 className="text-2xl font-bold mb-6 cyber-text-gradient">Rewards Center</h2>
-             <div className="grid grid-cols-2 gap-4 mb-6">
-                <MetricCard label="Total Rewards" value="15" />
-                <MetricCard label="Day Streak" value="5" />
-            </div>
-
-            <div className="space-y-2">
-                <div className="flex justify-between items-center text-sm">
-                    <span className="font-medium">Level 5 Progress</span>
-                    <span className="text-muted-foreground">450 / 500 XP</span>
+        <Card>
+            <CardHeader>
+                <CardTitle>Rewards Center</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                    <MetricCard label="Total Rewards" value="15" />
+                    <MetricCard label="Day Streak" value="5" />
                 </div>
-                <div className="w-full bg-muted rounded-full h-3 cyber-border-animated">
-                    <div className="bg-gradient-to-r from-secondary to-primary h-full rounded-full" style={{ width: '90%' }}></div>
+                <div className="space-y-2">
+                    <div className="flex justify-between items-center text-sm">
+                        <span className="font-medium">Level 5 Progress</span>
+                        <span className="text-muted-foreground">450 / 500 XP</span>
+                    </div>
+                    <Progress value={90} className="h-3" />
                 </div>
-            </div>
-        </CyberCard>
+            </CardContent>
+        </Card>
 
-        <CyberCard>
-            <h3 className="text-lg font-bold mb-4 cyber-text-gradient">Available Rewards</h3>
-            <div className="space-y-3">
+        <Card>
+            <CardHeader>
+                <CardTitle>Available Rewards</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
                 {rewards.map(reward => (
-                    <div key={reward.title} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+                    <div key={reward.title} className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full flex items-center justify-center bg-secondary/20">
-                               {reward.locked ? <Lock className="w-5 h-5 text-muted-foreground"/> : <Medal className="w-5 h-5 text-secondary cyber-glow-secondary"/>}
+                            <div className="w-10 h-10 rounded-full flex items-center justify-center bg-primary/10">
+                               {reward.locked ? <Lock className="w-5 h-5 text-muted-foreground"/> : <Medal className="w-5 h-5 text-primary"/>}
                             </div>
                             <div>
                                 <p className="font-semibold">{reward.title}</p>
@@ -55,20 +60,22 @@ export default function Rewards() {
                         {reward.locked ? (
                              <span className="text-sm font-bold text-muted-foreground">Locked</span>
                         ) : reward.claimed ? (
-                             <span className="text-sm font-bold text-green-400">Claimed</span>
+                             <span className="text-sm font-bold text-green-600">Claimed</span>
                         ) : (
-                            <CyberButton size="sm">Claim</CyberButton>
+                            <Button size="sm">Claim</Button>
                         )}
                     </div>
                 ))}
-            </div>
-        </CyberCard>
+            </CardContent>
+        </Card>
 
-         <CyberCard>
-            <h3 className="text-lg font-bold mb-4 cyber-text-gradient">Leaderboard</h3>
-            <div className="space-y-2">
+         <Card>
+            <CardHeader>
+                <CardTitle>Leaderboard</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
                 {leaderboard.map(entry => (
-                    <div key={entry.rank} className={`flex items-center justify-between p-2 rounded-lg ${entry.isUser ? 'cyber-border-animated' : 'bg-muted/50'}`}>
+                    <div key={entry.rank} className={cn("flex items-center justify-between p-2 rounded-lg", entry.isUser ? 'bg-primary/10 border border-primary/20' : 'bg-secondary/50')}>
                         <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-full flex items-center justify-center bg-primary/20 text-primary font-bold">{entry.rank}</div>
                             <div>
@@ -79,16 +86,15 @@ export default function Rewards() {
                         <span className="text-2xl">{entry.icon}</span>
                     </div>
                 ))}
-            </div>
-        </CyberCard>
-
+            </CardContent>
+        </Card>
     </div>
   );
 }
 
 const MetricCard = ({ label, value }: { label: string; value: string }) => (
-  <CyberCard variant="inner" className="p-3 text-center">
-    <p className="text-2xl font-bold text-primary cyber-glow">{value}</p>
+  <Card className="p-3 text-center">
+    <p className="text-2xl font-bold text-primary">{value}</p>
     <p className="text-xs text-muted-foreground">{label}</p>
-  </CyberCard>
+  </Card>
 );

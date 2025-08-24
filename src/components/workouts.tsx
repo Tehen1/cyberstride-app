@@ -1,8 +1,8 @@
 "use client";
 
-import { CyberCard } from "@/components/ui/cyber-card";
-import { CyberButton } from "@/components/ui/cyber-button";
-import { Bike, Footprints, Plus, Trash2 } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Bike, Footprints, Plus, Trash2, Dumbbell } from "lucide-react";
 
 const categories = [
   { name: "Cycling", icon: Bike, details: "Road & Mountain" },
@@ -20,48 +20,51 @@ const history = [
 export default function Workouts() {
   return (
     <div className="space-y-6 fade-in">
-      <CyberCard>
-        <h2 className="text-2xl font-bold mb-4 cyber-text-gradient">Workout Library</h2>
-        <div className="grid grid-cols-2 gap-4">
+      <Card>
+        <CardHeader>
+            <CardTitle>Workout Library</CardTitle>
+        </CardHeader>
+        <CardContent className="grid grid-cols-2 gap-4">
           {categories.map((cat) => (
-            <CyberCard
+            <Card
               key={cat.name}
-              variant="inner"
               className="text-center p-4 hover:border-primary transition-all duration-300 cursor-pointer group"
             >
-              <cat.icon className="w-12 h-12 mx-auto text-primary transition-all group-hover:cyber-glow" />
+              <cat.icon className="w-10 h-10 mx-auto text-primary transition-all" />
               <p className="font-bold mt-2">{cat.name}</p>
               <p className="text-xs text-muted-foreground">{cat.details}</p>
-            </CyberCard>
+            </Card>
           ))}
-        </div>
-      </CyberCard>
+        </CardContent>
+      </Card>
 
-      <CyberCard>
-        <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold cyber-text-gradient">Recent Workouts</h3>
-            <button className="flex items-center gap-2 text-xs text-destructive/80 hover:text-destructive transition-colors">
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle>Recent Workouts</CardTitle>
+            <Button variant="ghost" size="sm" className="flex items-center gap-2 text-xs text-red-600 hover:text-red-700">
                 <Trash2 className="w-3 h-3"/> Clear All
-            </button>
-        </div>
-        <div className="space-y-3">
+            </Button>
+        </CardHeader>
+        <CardContent className="space-y-3">
            {history.map((item, index) => (
-             <div key={index} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+             <div key={index} className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
                 <div className="flex items-center gap-3">
-                    <Bike className="w-8 h-8 text-secondary"/>
+                    <div className="p-2 bg-muted rounded-full">
+                        <Dumbbell className="w-5 h-5 text-primary"/>
+                    </div>
                     <div>
                         <p className="font-semibold">{item.distance}</p>
                         <p className="text-xs text-muted-foreground">{item.type}</p>
                     </div>
                 </div>
                 <div className="text-right">
-                    <p className="font-semibold text-green-400">+{item.tokens} FIXIE</p>
+                    <p className="font-semibold text-green-600">+{item.tokens} FIXIE</p>
                     <p className="text-xs text-muted-foreground">{item.date}</p>
                 </div>
              </div>
            ))}
-        </div>
-      </CyberCard>
+        </CardContent>
+      </Card>
     </div>
   );
 }

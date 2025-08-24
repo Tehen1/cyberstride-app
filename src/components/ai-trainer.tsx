@@ -6,8 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Bot, Loader2 } from "lucide-react";
 
-import { CyberCard } from "@/components/ui/cyber-card";
-import { CyberButton } from "@/components/ui/cyber-button";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -70,87 +70,93 @@ export function AITrainer() {
   }
 
   return (
-    <CyberCard>
-      <h3 className="text-lg font-bold mb-4 cyber-text-gradient flex items-center gap-2">
-        <Bot /> AI Personal Trainer
-      </h3>
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+            <Bot /> AI Personal Trainer
+        </CardTitle>
+      </CardHeader>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <FormField
-            control={form.control}
-            name="fitnessGoal"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Fitness Goal</FormLabel>
-                <FormControl>
-                  <Input placeholder="e.g., lose weight, build muscle" {...field} className="bg-transparent border-primary/50" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="workoutHistory"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Recent Workout</FormLabel>
-                <FormControl>
-                  <Input placeholder="e.g., ran 5km, cycled for 30 mins" {...field} className="bg-transparent border-primary/50" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="fitnessLevel"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Fitness Level</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <CardContent className="space-y-4">
+            <FormField
+              control={form.control}
+              name="fitnessGoal"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Fitness Goal</FormLabel>
                   <FormControl>
-                    <SelectTrigger className="bg-transparent border-primary/50">
-                      <SelectValue placeholder="Select your fitness level" />
-                    </SelectTrigger>
+                    <Input placeholder="e.g., lose weight, build muscle" {...field} />
                   </FormControl>
-                  <SelectContent>
-                    <SelectItem value="beginner">Beginner</SelectItem>
-                    <SelectItem value="intermediate">Intermediate</SelectItem>
-                    <SelectItem value="advanced">Advanced</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <CyberButton type="submit" disabled={loading} className="w-full">
-            {loading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Generating...
-              </>
-            ) : (
-              "Get Pro Tips"
-            )}
-          </CyberButton>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="workoutHistory"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Recent Workout</FormLabel>
+                  <FormControl>
+                    <Input placeholder="e.g., ran 5km, cycled for 30 mins" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="fitnessLevel"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Fitness Level</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select your fitness level" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="beginner">Beginner</SelectItem>
+                      <SelectItem value="intermediate">Intermediate</SelectItem>
+                      <SelectItem value="advanced">Advanced</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </CardContent>
+          <CardFooter>
+            <Button type="submit" disabled={loading} className="w-full">
+                {loading ? (
+                <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Generating...
+                </>
+                ) : (
+                "Get Pro Tips"
+                )}
+            </Button>
+          </CardFooter>
         </form>
       </Form>
       {result && (
-        <CyberCard variant="inner" className="mt-6 space-y-4">
+        <CardContent className="border-t pt-6 space-y-4">
             <div>
-                <h4 className="font-bold text-secondary cyber-glow-secondary">Recommendation:</h4>
+                <h4 className="font-bold text-primary">Recommendation:</h4>
                 <p className="text-sm text-muted-foreground">{result.recommendation}</p>
             </div>
             <div>
-                <h4 className="font-bold text-accent cyber-glow-accent">Motivation:</h4>
+                <h4 className="font-bold text-accent-foreground">Motivation:</h4>
                 <p className="text-sm text-muted-foreground">{result.motivation}</p>
             </div>
-        </CyberCard>
+        </CardContent>
       )}
-    </CyberCard>
+    </Card>
   );
 }

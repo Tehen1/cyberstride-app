@@ -1,85 +1,102 @@
 "use client";
 
-import { CyberCard } from "@/components/ui/cyber-card";
-import { CyberButton } from "@/components/ui/cyber-button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Banknote, PiggyBank, BarChart2 } from 'lucide-react';
+import { Banknote, PiggyBank, BarChart2, ArrowUp, ArrowDown } from 'lucide-react';
+import { cn } from "@/lib/utils";
 
 export default function DeFi() {
   return (
     <div className="space-y-6 fade-in">
-      <CyberCard>
-        <h2 className="text-2xl font-bold mb-6 cyber-text-gradient">DeFi Portfolio</h2>
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          <MetricCard label="Total Value" value="$617.28" />
-          <MetricCard label="Staking Rewards" value="123.45 FIXIE" />
-        </div>
-        <div className="space-y-3">
-          <AssetRow name="FIXIE" balance="1234.567" value="$617.28" change="+5.2%" />
-          <AssetRow name="ETH" balance="0.005" value="$15.42" change="-1.8%" />
-        </div>
-      </CyberCard>
+      <Card>
+        <CardHeader>
+            <CardTitle>DeFi Portfolio</CardTitle>
+        </CardHeader>
+        <CardContent>
+            <div className="grid grid-cols-2 gap-4 mb-6">
+            <MetricCard label="Total Value" value="$617.28" />
+            <MetricCard label="Staking Rewards" value="123.45 FIXIE" />
+            </div>
+            <div className="space-y-3">
+            <AssetRow name="FIXIE" balance="1234.567" value="$617.28" change="+5.2%" />
+            <AssetRow name="ETH" balance="0.005" value="$15.42" change="-1.8%" />
+            </div>
+        </CardContent>
+      </Card>
 
-      <CyberCard>
-        <h3 className="text-lg font-bold mb-4 cyber-text-gradient">Staking</h3>
-        <div className="space-y-4">
+      <Card>
+        <CardHeader>
+            <CardTitle>Staking</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-2 text-primary">Amount to Stake</label>
+            <label className="block text-sm font-medium mb-2 text-foreground">Amount to Stake</label>
             <div className="relative">
-              <Input type="number" placeholder="0.00" className="bg-transparent border-primary/50 text-lg h-12 pr-16" />
-              <span className="absolute right-4 top-3.5 text-sm font-bold text-primary">FIXIE</span>
+              <Input type="number" placeholder="0.00" className="bg-background text-lg h-12 pr-16" />
+              <span className="absolute right-4 top-3.5 text-sm font-bold text-muted-foreground">FIXIE</span>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
-            <CyberButton><PiggyBank className="w-4 h-4"/>Stake</CyberButton>
-            <CyberButton variant="secondary">Unstake</CyberButton>
+            <Button><PiggyBank className="w-4 h-4 mr-2"/>Stake</Button>
+            <Button variant="secondary">Unstake</Button>
           </div>
           <div className="grid grid-cols-3 gap-4 text-center mt-4">
             <MetricCard label="Staked" value="5000" />
             <MetricCard label="APY" value="12.5%" />
             <MetricCard label="Pending" value="25.3" />
           </div>
-        </div>
-      </CyberCard>
+        </CardContent>
+      </Card>
 
-      <CyberCard>
-        <h3 className="text-lg font-bold mb-4 cyber-text-gradient">Market Updates</h3>
-        <div className="space-y-3">
-          <UpdateRow title="FIXIE Token Listed" subtitle="Now trading on DEX exchanges" tag="+15%" tagColor="text-green-400"/>
-          <UpdateRow title="Staking Rewards Increased" subtitle="APY raised to 12.5%" tag="NEW" tagColor="text-blue-400"/>
-        </div>
-      </CyberCard>
+      <Card>
+        <CardHeader>
+            <CardTitle>Market Updates</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <UpdateRow title="FIXIE Token Listed" subtitle="Now trading on DEX exchanges" tag="+15%" tagColor="text-green-600"/>
+          <UpdateRow title="Staking Rewards Increased" subtitle="APY raised to 12.5%" tag="NEW" tagColor="text-blue-600"/>
+        </CardContent>
+      </Card>
     </div>
   );
 }
 
 const MetricCard = ({ label, value }: { label: string; value: string }) => (
-  <CyberCard variant="inner" className="p-3">
-    <p className="text-lg font-bold text-primary cyber-glow">{value}</p>
+  <Card className="p-3">
+    <p className="text-lg font-bold text-primary">{value}</p>
     <p className="text-xs text-muted-foreground">{label}</p>
-  </CyberCard>
+  </Card>
 );
 
-const AssetRow = ({ name, balance, value, change }: { name: string; balance: string; value: string; change: string }) => (
-  <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
-    <div className="flex items-center gap-3">
-        <Banknote className="w-8 h-8 text-primary"/>
-        <div>
-            <p className="font-semibold">{name}</p>
-            <p className="text-xs text-muted-foreground">{balance}</p>
+const AssetRow = ({ name, balance, value, change }: { name: string; balance: string; value: string; change: string }) => {
+    const isPositive = change.startsWith('+');
+    return (
+        <div className="flex justify-between items-center p-3 bg-secondary/50 rounded-lg">
+            <div className="flex items-center gap-3">
+                <div className="p-2 bg-muted rounded-full">
+                    <Banknote className="w-5 h-5 text-primary"/>
+                </div>
+                <div>
+                    <p className="font-semibold">{name}</p>
+                    <p className="text-xs text-muted-foreground">{balance}</p>
+                </div>
+            </div>
+            <div className="text-right">
+                <p className="font-semibold">{value}</p>
+                <div className={cn("flex items-center justify-end text-xs", isPositive ? 'text-green-600' : 'text-red-600')}>
+                   {isPositive ? <ArrowUp className="w-3 h-3 mr-1" /> : <ArrowDown className="w-3 h-3 mr-1" />}
+                    <span>{change}</span>
+                </div>
+            </div>
         </div>
-    </div>
-    <div className="text-right">
-        <p className="font-semibold">{value}</p>
-        <p className={`text-xs ${change.startsWith('+') ? 'text-green-400' : 'text-red-400'}`}>{change}</p>
-    </div>
-  </div>
-);
+    );
+};
 
 const UpdateRow = ({ title, subtitle, tag, tagColor }: { title: string; subtitle: string; tag: string; tagColor: string }) => (
-    <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+    <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
         <div className="flex items-center gap-3">
-            <BarChart2 className="w-6 h-6 text-secondary" />
+            <BarChart2 className="w-6 h-6 text-primary" />
             <div>
                 <p className="font-semibold">{title}</p>
                 <p className="text-xs text-muted-foreground">{subtitle}</p>
