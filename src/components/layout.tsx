@@ -55,9 +55,20 @@ export default function Layout() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen bg-background relative">
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+        className="fixed top-0 left-0 w-full h-full object-cover -z-10 opacity-20"
+      >
+        <source src="https://ipfs.io/ipfs/QmY6skxApAer2bfMPXvvuEEx3WunScoN8b8hmmez8VCK6q" type="video/mp4" />
+      </video>
+      <div className="fixed top-0 left-0 w-full h-full bg-background/80 -z-10" />
+
       <Header />
-      <main className="flex-1 overflow-y-auto pt-20 pb-24 px-4">
+      <main className="flex-1 overflow-y-auto pt-20 pb-24 px-4 z-10">
         <div className="max-w-4xl mx-auto">
           {renderView()}
         </div>
