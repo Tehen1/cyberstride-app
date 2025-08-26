@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Bot, Loader2 } from "lucide-react";
@@ -24,7 +24,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { getAITips } from "@/app/actions";
 import { toast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
@@ -34,6 +33,24 @@ const formSchema = z.object({
 });
 
 type FormData = z.infer<typeof formSchema>;
+
+// Mock function to simulate AI response
+async function getAITips(values: FormData): Promise<{ recommendation: string; motivation: string; } | { error: string; }> {
+    console.log("Form values:", values);
+    return new Promise(resolve => {
+        setTimeout(() => {
+            if (values.fitnessGoal && values.workoutHistory && values.fitnessLevel) {
+                resolve({
+                    recommendation: "Based on your goal to " + values.fitnessGoal + ", try incorporating 30 minutes of high-intensity interval training (HIIT) twice a week.",
+                    motivation: "Every step you take is a step towards a healthier you. Keep pushing your limits!"
+                });
+            } else {
+                resolve({ error: "Please fill out all fields to get personalized tips." });
+            }
+        }, 1500);
+    });
+}
+
 
 export function AITrainer() {
   const [loading, setLoading] = useState(false);
