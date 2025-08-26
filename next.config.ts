@@ -2,6 +2,7 @@ import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
+  basePath: '/cyberstride-app',
   output: 'export',
   typescript: {
     ignoreBuildErrors: true,
