@@ -33,10 +33,10 @@ const navItems = [
 ];
 
 const videoSources = {
-  home: "https://ipfs.io/ipfs/QmY5CCvnXpzH93gvAzbwHGyiwtXLUMtJ2yn9FqGLW6SnY5",
-  analytics: "https://ipfs.io/ipfs/QmTxhqRF8rQZxcwL1hfoqrrEjLahfymPRtpGXRq4gRK4Xn",
-  defi: "https://ipfs.io/ipfs/QmPbM9iDT3v5o4zDvLntNhySmYpjEsKvgY4YmhskHvRn24",
-  default: "https://ipfs.io/ipfs/QmY6skxApAer2bfMPXvvuEEx3WunScoN8b8hmmez8VCK6q",
+  home: "https://bafybeihfwt2dimlhnrjrl5syn7yboc75w3glcmcgczxftk5hmkttuafd3y.ipfs.dweb.link/home-optimized.mp4",
+  analytics: "https://bafybeihfwt2dimlhnrjrl5syn7yboc75w3glcmcgczxftk5hmkttuafd3y.ipfs.dweb.link/analytics-optimized.mp4",
+  defi: "https://bafybeihfwt2dimlhnrjrl5syn7yboc75w3glcmcgczxftk5hmkttuafd3y.ipfs.dweb.link/defi-optimized.mp4",
+  default: "https://bafybeihfwt2dimlhnrjrl5syn7yboc75w3glcmcgczxftk5hmkttuafd3y.ipfs.dweb.link/home-optimized.mp4",
 };
 
 export default function Layout() {
